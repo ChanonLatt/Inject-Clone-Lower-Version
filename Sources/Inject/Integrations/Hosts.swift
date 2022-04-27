@@ -9,7 +9,7 @@ public typealias InjectViewType = NSView
 #endif
 
 #if DEBUG
-
+@available(iOS 13.0, *)
 extension Inject {
     public typealias ViewControllerHost = _InjectableViewControllerHost
     public typealias ViewHost = _InjectableViewHost

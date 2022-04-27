@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 #if DEBUG
+@available(iOS 13.0, *)
 public extension SwiftUI.View {
     func enableInjection() -> some SwiftUI.View {
         _ = Inject.load
