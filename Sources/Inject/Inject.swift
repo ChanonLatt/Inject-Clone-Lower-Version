@@ -12,6 +12,7 @@ public protocol InjectListener {
 }
 
 /// Public namespace for using Inject API
+@available(iOS 13.0, *)
 public enum Inject {
     public static let observer = injectionObserver
     public static let load: Void = loadInjectionImplementation
