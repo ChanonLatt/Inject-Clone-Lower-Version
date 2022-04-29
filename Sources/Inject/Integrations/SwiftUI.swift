@@ -1,8 +1,7 @@
 import Foundation
 import SwiftUI
-
-#if DEBUG
 @available(iOS 13.0, *)
+#if DEBUG
 public extension SwiftUI.View {
     func enableInjection() -> some SwiftUI.View {
         _ = Inject.load
@@ -21,7 +20,6 @@ public extension SwiftUI.View {
 }
 
 @propertyWrapper
-@available(iOS 13.0, *)
 public struct ObserveInjection: DynamicProperty {
     @ObservedObject private var iO = Inject.observer
     public init() {}
@@ -38,7 +36,6 @@ public extension SwiftUI.View {
         self
     }
 }
-
 @propertyWrapper
 public struct ObserveInjection {
     public init() {}

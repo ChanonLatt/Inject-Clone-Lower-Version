@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 import SwiftUI
-
+@available(iOS 13.0, *)
 /// Common protocol interface for classes that support observing injection events
 /// This is automatically added to all NSObject subclasses like `ViewController`s or `Window`s
 public protocol InjectListener {
@@ -12,7 +12,6 @@ public protocol InjectListener {
 }
 
 /// Public namespace for using Inject API
-@available(iOS 13.0, *)
 public enum Inject {
     public static let observer = injectionObserver
     public static let load: Void = loadInjectionImplementation
@@ -48,7 +47,6 @@ private var loadInjectionImplementation: Void = {
     Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/" + bundleName)?.load()
 }()
 
-@available(iOS 13.0, *)
 public class InjectionObserver: ObservableObject {
     @Published public private(set) var injectionNumber = 0
     private var cancellable: AnyCancellable?
@@ -66,22 +64,18 @@ public class InjectionObserver: ObservableObject {
             }
     }
 }
-@available(iOS 13.0, *)
 private let injectionObserver = InjectionObserver()
 private var injectionObservationKey = arc4random()
 
 public extension InjectListener where Self: NSObject {
     func onInjection(callback: @escaping (Self) -> Void) {
-        if #available(iOS 13.0, *) {
+
             let observation = injectionObserver.objectWillChange.sink(receiveValue: { [weak self] in
             guard let self = self else { return }
             callback(self)
         })
 
         objc_setAssociatedObject(self, &injectionObservationKey, observation, .OBJC_ASSOCIATION_RETAIN)
-        } else {
-            print("This package is support verion 13 or up")
-        }
     }
 }
 
