@@ -156,7 +156,7 @@ public class _InjectableViewHost<Hosted: InjectViewType>: InjectViewType {
     }
 }
 #else
-
+@available(iOS 13.0, *)
 extension Inject {
     public static func ViewControllerHost(_ viewController: InjectViewControllerType) -> InjectViewControllerType {
         viewController
