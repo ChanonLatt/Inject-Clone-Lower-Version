@@ -1,4 +1,3 @@
-@available(iOS 13.0, *)
 #if canImport(UIKit)
 import UIKit
 public typealias InjectViewControllerType = UIViewController
@@ -10,6 +9,7 @@ public typealias InjectViewType = NSView
 #endif
 
 #if DEBUG
+@available(iOS 13.0, *)
 extension Inject {
     public typealias ViewControllerHost = _InjectableViewControllerHost
     public typealias ViewHost = _InjectableViewHost
@@ -20,6 +20,7 @@ extension Inject {
 /// If you are using a `TestViewController`, you would do the following:
 /// `let myView = Inject.ViewControllerHost(TestViewController())`
 /// And within the parent view, you should add the view above.
+@available(iOS 13.0, *)
 @dynamicMemberLookup
 public class _InjectableViewControllerHost<Hosted: InjectViewControllerType>: InjectViewControllerType {
     public private(set) var instance: Hosted

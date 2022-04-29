@@ -1,9 +1,9 @@
 import Foundation
 import Combine
 import SwiftUI
-@available(iOS 13.0, *)
 /// Common protocol interface for classes that support observing injection events
 /// This is automatically added to all NSObject subclasses like `ViewController`s or `Window`s
+@available(iOS 13.0, *)
 public protocol InjectListener {
     associatedtype InjectInstanceType = Self
 
@@ -12,12 +12,13 @@ public protocol InjectListener {
 }
 
 /// Public namespace for using Inject API
+@available(iOS 13.0, *)
 public enum Inject {
     public static let observer = injectionObserver
     public static let load: Void = loadInjectionImplementation
     public static var animation: SwiftUI.Animation?
 }
-
+@available(iOS 13.0, *)
 public extension InjectListener {
     /// Ensures injection is enabled
     @inlinable @inline(__always)
@@ -31,6 +32,7 @@ public extension InjectListener {
 }
 
 #if DEBUG
+@available(iOS 13.0, *)
 private var loadInjectionImplementation: Void = {
     guard objc_getClass("InjectionClient") == nil else { return }
 #if os(macOS)
@@ -46,7 +48,7 @@ private var loadInjectionImplementation: Void = {
 #endif // OS and environment conditions
     Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/" + bundleName)?.load()
 }()
-
+@available(iOS 13.0, *)
 public class InjectionObserver: ObservableObject {
     @Published public private(set) var injectionNumber = 0
     private var cancellable: AnyCancellable?
@@ -66,7 +68,7 @@ public class InjectionObserver: ObservableObject {
 }
 private let injectionObserver = InjectionObserver()
 private var injectionObservationKey = arc4random()
-
+@available(iOS 13.0, *)
 public extension InjectListener where Self: NSObject {
     func onInjection(callback: @escaping (Self) -> Void) {
 
@@ -80,10 +82,11 @@ public extension InjectListener where Self: NSObject {
 }
 
 #else
+@available(iOS 13.0, *)
 public class InjectionObserver: ObservableObject {}
 private let injectionObserver = InjectionObserver()
 private var loadInjectionImplementation: Void = {}()
-
+@available(iOS 13.0, *)
 public extension InjectListener where Self: NSObject {
     @inlinable @inline(__always)
     func onInjection(callback: @escaping (Self) -> Void) {}
