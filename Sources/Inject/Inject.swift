@@ -66,6 +66,7 @@ public class InjectionObserver: ObservableObject {
             }
     }
 }
+@available(iOS 13.0, *)
 private let injectionObserver = InjectionObserver()
 private var injectionObservationKey = arc4random()
 @available(iOS 13.0, *)
@@ -84,6 +85,7 @@ public extension InjectListener where Self: NSObject {
 #else
 @available(iOS 13.0, *)
 public class InjectionObserver: ObservableObject {}
+@available(iOS 13.0, *)
 private let injectionObserver = InjectionObserver()
 private var loadInjectionImplementation: Void = {}()
 @available(iOS 13.0, *)
