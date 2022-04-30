@@ -155,12 +155,15 @@ public class _InjectableViewHost<Hosted: InjectViewType>: InjectViewType {
         instance[keyPath: keyPath]
     }
 }
+@available(iOS 13.0, *)
 #else
 @available(iOS 13.0, *)
 extension Inject {
+    @available(iOS 13.0, *)
     public static func ViewControllerHost(_ viewController: InjectViewControllerType) -> InjectViewControllerType {
         viewController
     }
+    @available(iOS 13.0, *)
     public static func ViewHost(_ view: InjectViewType) -> InjectViewType {
         view
     }
