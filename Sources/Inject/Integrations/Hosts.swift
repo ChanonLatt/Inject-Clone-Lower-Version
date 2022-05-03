@@ -103,6 +103,7 @@ public class _InjectableViewControllerHost<Hosted: InjectViewControllerType>: In
 /// If you are using a `TestView`, you would do the following:
 /// `let myView = Inject.ViewHost(TestView())`
 /// And within the parent view, you should add the view above.
+@available(iOS 13.0, *)
 @dynamicMemberLookup
 public class _InjectableViewHost<Hosted: InjectViewType>: InjectViewType {
     public private(set) var instance: Hosted
